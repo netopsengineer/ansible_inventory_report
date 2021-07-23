@@ -15,7 +15,7 @@
 {% for inventory_hostname in groups['all'] %}
         <tr>
             <td>{{ hostvars[inventory_hostname] }}</td>
-            <td>{{ hostvars[inventory_hostname].placement.region }}</td>
+            <td>{{ hostvars[inventory_hostname].power.status }}</td>
         </tr>
 {% endfor %}
     </tbody>
