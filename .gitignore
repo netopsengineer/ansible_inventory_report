@@ -9,3 +9,7 @@
 *.swo
 # test output
 *.retry
+# vscode nonsense
+.vscode
+# python droppings
+*.py[co]
