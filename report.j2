@@ -8,14 +8,14 @@
     <thead>
         <tr>
             <th>Hostname</th>
-            <th>Region</th>
+            <th>Power State</th>
         </tr>
     </thead>
     <tbody>
-{% for inventory_hostname in groups['all'] %}
+{% for host in groups['all'] %}
         <tr>
-            <td>{{ hostvars[inventory_hostname] }}</td>
-            <td>{{ hostvars[inventory_hostname].placement.region }}</td>
+            <td>{{ host | lower }}</td>
+            <td {% if "stopped" in hostvars[inventory_hostname].ec2_instance_info.instances[0].state.name %}style="background:red;"{% elif "running" in hostvars[inventory_hostname].ec2_instance_info.instances[0].state.name %}style="background:green;"{% endif %}>{{ hostvars[inventory_hostname].ec2_instance_info.instances[0].state.name }}</td>
         </tr>
 {% endfor %}
     </tbody>
