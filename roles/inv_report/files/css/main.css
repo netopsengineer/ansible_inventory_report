@@ -69,3 +69,10 @@ tbody tr:last-child td {
 span.highlight {
     background-color: yellow;
 }
+
+td #state .running {
+  color: green;
+}
+td #state .stopped {
+  color: red;
+}

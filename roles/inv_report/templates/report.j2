@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>Hostname</th>
+            <th>Power State</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for host in groups['all'] %}
+        <tr>
+            <td>{{ host }}</td>
+            <td id="state" class="{{hostvars[host].ec2_instance_info.instances[0].state.name}}">{{ hostvars[host].ec2_instance_info.instances[0].state.name }}</td>
+        </tr>
+{% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

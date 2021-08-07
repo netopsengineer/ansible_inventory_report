@@ -1,0 +1,26 @@
+- name: Assume Role
+  community.aws.sts_assume_role:
+    role_arn: "{{ iam_role_arn }}"
+    role_session_name: "AnsibleEC2Parking"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+  register: assumed_role
+  delegate_to: localhost
+  changed_when: False
+
+- name: Get ec2_instance_info
+  community.aws.ec2_instance_info:
+    aws_access_key: "{{ assumed_role.sts_creds.access_key }}"
+    aws_secret_key: "{{ assumed_role.sts_creds.secret_key }}"
+    security_token: "{{ assumed_role.sts_creds.session_token }}"
+    instance_ids: "{{ hostvars[inventory_hostname].instance_id }}"
+    region: "{{ hostvars[inventory_hostname].placement.region }}"
+  register: ec2_instance_info
+  delegate_to: localhost
+
+- name: create HTML report
+  ansible.builtin.template:
+    src: report.j2
+    dest: "{{ file_path }}"
+  delegate_to: localhost
+  run_once: true
