@@ -1,7 +1,7 @@
 - name: Assume Role
   community.aws.sts_assume_role:
     role_arn: "{{ iam_role_arn }}"
-    role_session_name: "AnsibleEC2Parking"
+    role_session_name: "{{ aws_session_name }}"
     aws_access_key: "{{ aws_access_key }}"
     aws_secret_key: "{{ aws_secret_key }}"
   register: assumed_role
