@@ -8,18 +8,26 @@
     <thead>
         <tr>
             <th>Hostname</th>
+            <th>Instance Type</th>
             <th>Power State</th>
+            <th>Environment</th>
+            <th>Application</th>
+            <th>Parking Exempt</th>
         </tr>
     </thead>
     <tbody>
-{% for host in groups['all'] %}
+{% for host in report_data %}
         <tr>
-            <td>{{ host }}</td>
-            <td id="state" class="{{hostvars[host].ec2_instance_info.instances[0].state.name}}">{{ hostvars[host].ec2_instance_info.instances[0].state.name }}</td>
+            <td>{{ host.hostname }}</td>
+            <td>{{ host.aws_type }}</td>
+	        <td class="{{ host.power_state }}">{{ host.power_state | capitalize }}</td>
+            <td>{{ host.environment }}</td>
+            <td>{{ host.application }}</td>
+            <td>{{ host.parking_exempt }}</td>
         </tr>
 {% endfor %}
     </tbody>
 </table>
-
+Last Updated: {{ now() }}
 </body>
 </html>
