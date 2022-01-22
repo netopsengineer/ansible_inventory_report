@@ -1,0 +1,5 @@
+---
+# defaults file for roles/inv_report
+report_name: "Ansible Inventory Report"
+file_path: /var/www/html/index.html
+table_type: std_table

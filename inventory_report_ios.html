@@ -1,106 +1,91 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
-<table>
-    <thead>
-        <tr>
-            <th>Hostname</th>
-            <th>Model Type</th>
-            <th>Serial Number</th>
-            <th>Mgmt interface IP</th>
-            <th>Code Version</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>cat3k-160</td>
-            <td></td>
-            <td>FCW2023D16V</td>
-            <td>172.26.249.160</td>
-            <td >16.06.01</td>
-        </tr>
-        <tr>
-            <td>cat3k-161</td>
-            <td></td>
-            <td>FCW2023C1K1</td>
-            <td>172.26.249.161</td>
-            <td >16.06.01</td>
-        </tr>
-        <tr>
-            <td>cat3k-162</td>
-            <td></td>
-            <td>FOC2020U0X0</td>
-            <td>172.26.249.162</td>
-            <td >16.06.01</td>
-        </tr>
-        <tr>
-            <td>cat3k-163</td>
-            <td></td>
-            <td>FCW2023D17F</td>
-            <td>172.26.249.163</td>
-            <td >16.06.01</td>
-        </tr>
-        <tr>
-            <td>cat3k-164</td>
-            <td></td>
-            <td>FOC1949U1JA</td>
-            <td>172.26.249.164</td>
-            <td >16.06.01</td>
-        </tr>
-        <tr>
-            <td>cat3k-166</td>
-            <td></td>
-            <td>FCW1949D16M</td>
-            <td>172.26.249.166</td>
-            <td >16.06.01</td>
-        </tr>
-        <tr>
-            <td>cat3k-169</td>
-            <td></td>
-            <td>FOC1731V1QZ</td>
-            <td>172.26.249.169</td>
-            <td >16.06.01</td>
-        </tr>
-        <tr>
-            <td>cat9k-1</td>
-            <td></td>
-            <td>FCW2125L0N7</td>
-            <td>172.26.249.151</td>
-            <td style="background:yellow;">BLD_POLARIS_DEV_LATEST_20171031_020522</td>
-        </tr>
-        <tr>
-            <td>cat9k-2</td>
-            <td></td>
-            <td>FCW2125L0M9</td>
-            <td>172.26.249.152</td>
-            <td style="background:yellow;">BLD_POLARIS_DEV_LATEST_20171031_020522</td>
-        </tr>
-        <tr>
-            <td>cat9k-3</td>
-            <td></td>
-            <td>FCW2125G06X</td>
-            <td>172.26.249.153</td>
-            <td style="background:yellow;">BLD_POLARIS_DEV_LATEST_20171031_020522</td>
-        </tr>
-        <tr>
-            <td>cat9k-4</td>
-            <td></td>
-            <td>FCW2125L0J2</td>
-            <td>172.26.249.154</td>
-            <td style="background:yellow;">BLD_POLARIS_DEV_LATEST_20171031_020522</td>
-        </tr>
-        <tr>
-            <td>cat9k-puppet</td>
-            <td></td>
-            <td>FCW2122A4H0</td>
-            <td>172.26.249.159</td>
-            <td style="background:yellow;">2017-10-04_23.58_petervh</td>
-        </tr>
-    </tbody>
-</table>
+<html lang="en">
 
+<head>
+    <title>Cisco Inventory Report</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- UIkit CSS CDN links -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.10.0/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS CDN links -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.10.0/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.10.0/dist/js/uikit-icons.min.js"></script>
+
+    <!-- FontAwesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom styling for table responsiveness on smaller screens -->
+    <style>
+        @media screen and (max-width: 959px) {
+            .icon::before {
+                display: inline-block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            table td {
+                display: block;
+                text-align: right;
+            }
+
+            table td::before {
+                float: left;
+                color: #ee000098;
+                text-transform: uppercase;
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                content: attr(data-icon);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--- [0] UIkit: uk-background -->
+    <div class="uk-background-cover uk-background-muted" uk-height-viewport="expand: true">
+        <!--- [1] UIkit: uk-container -->
+        <div class="uk-container">
+            <img class="uk-margin uk-padding-large uk-align-center" src="roles/inv_report/files/ansible.gif">
+            <!--- [2] UIkit: uk-card -->
+            <div class="uk-card uk-card-default uk-card-body uk-card-large uk-card-hover">
+                <h3 class="uk-card-title uk-text-break">Ansible Inventory Report</h3>
+                <!--- [3] UIkit: uk-table -->
+                <table class="uk-table uk-table-responsive uk-table-striped">
+                    <caption class="uk-text-light">
+                        <b>Last Updated: </b>2022-01-21 22:29:15.500882
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th class="uk-text-emphasis uk-text-bolder">Hostname</th>
+                            <th class="uk-text-emphasis uk-text-bolder">Mgmt IP</th>
+                            <th class="uk-text-emphasis uk-text-bolder">Serial</th>
+                            <th class="uk-text-emphasis uk-text-bolder">Model</th>
+                            <th class="uk-text-emphasis uk-text-bolder">OS</th>
+                            <th class="uk-text-emphasis uk-text-bolder">Code Version</th>
+                        </tr>
+                    </thead>
+                    <tbody class="uk-text-light">
+                        <tr>
+                            <td class="uk-text-small" data-icon="&#xf6ff;">csr1000v-1</td>
+                            <td class="uk-text-small" data-icon="&#xf0c1;">131.226.217.143</td>
+                            <td class="uk-text-small" data-icon="&#x23;">9ESGOBARV9D</td>
+                            <td class="uk-text-small" data-icon="&#xf0a0;">CSR1000V</td>
+                            <td class="uk-text-small" data-icon="&#xf2db;">IOS-XE</td>
+                            <td class="uk-text-small" data-icon="&#xf1c9;">17.03.01a</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--- [3] END -->
+            </div>
+            <!--- [2] END -->
+        </div>
+        <!--- [1] END -->
+    </div>
+    <!--- [0] END -->
 </body>
+
 </html>

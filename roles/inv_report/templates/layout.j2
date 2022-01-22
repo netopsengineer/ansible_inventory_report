@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cisco Inventory Report</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% include 'css.j2' %}
+
+
+    <!-- Custom styling for table responsiveness on smaller screens -->
+    <style>
+        @media screen and (max-width: 959px) {
+            .icon::before {
+                display: inline-block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            table td {
+                display: block;
+                text-align: right;
+            }
+
+            table td::before {
+                float: left;
+                color: #ee000098;
+                text-transform: uppercase;
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                content: attr(data-icon);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--- [0] UIkit: uk-background -->
+    <div class="uk-background-cover uk-background-muted" uk-height-viewport="expand: true">
+        <!--- [1] UIkit: uk-container -->
+        <div class="uk-container">
+            <img class="uk-margin uk-padding-large uk-align-center" src="roles/inv_report/files/ansible.gif">
+            <!--- [2] UIkit: uk-card -->
+            <div class="uk-card uk-card-default uk-card-body uk-card-large uk-card-hover">
+                <h3 class="uk-card-title uk-text-break">{{ report_name }}</h3>
+{% block content %}{% endblock %}
+            </div>
+            <!--- [2] END -->
+        </div>
+        <!--- [1] END -->
+    </div>
+    <!--- [0] END -->
+</body>
+
+</html>

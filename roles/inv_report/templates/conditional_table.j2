@@ -1,0 +1,33 @@
+{% extends 'layout.j2' %}
+
+{% block content %}
+                <!--- [3] UIkit: uk-table -->
+                <table class="uk-table uk-table-responsive uk-table-striped">
+                    <caption class="uk-text-light">
+                        <b>Last Updated: </b>{{ now() }}
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th class="uk-text-emphasis uk-text-bolder">Hostname</th>
+                            <th class="uk-text-emphasis uk-text-bolder">Mgmt IP</th>
+                            <th class="uk-text-emphasis uk-text-bolder">Serial</th>
+                            <th class="uk-text-emphasis uk-text-bolder">Model</th>
+                            <th class="uk-text-emphasis uk-text-bolder">OS</th>
+                            <th class="uk-text-emphasis uk-text-bolder">Code Version</th>
+                        </tr>
+                    </thead>
+                    <tbody class="uk-text-light">
+                        {% for network_switch in groups['all'] %}
+                        <tr{% if "IOS" not in hostvars[network_switch]['ansible_net_iostype'] %} class="uk-alert-danger"{% endif %}>
+                            <td class="uk-text-small" data-icon="&#xf6ff;">{{ hostvars[network_switch]['ansible_net_hostname'] }}</td>
+                            <td class="uk-text-small" data-icon="&#xf0c1;">{{ ansible_host }}</td>
+                            <td class="uk-text-small" data-icon="&#x23;">{{hostvars[network_switch]['ansible_net_serialnum']}}</td>
+                            <td class="uk-text-small" data-icon="&#xf0a0;">{{hostvars[network_switch]['ansible_net_model']}}</td>
+                            <td class="uk-text-small" data-icon="&#xf2db;">{{hostvars[network_switch]['ansible_net_iostype']}}</td>
+                            <td class="uk-text-small" data-icon="&#xf1c9;">{{hostvars[network_switch]['ansible_net_version']}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!--- [3] END -->
+{% endblock %}
